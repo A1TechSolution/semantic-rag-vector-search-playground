@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 Tech Solution | Semantic RAG & Vector Playground</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glow-bg bg-emerald"></div>
+    <div class="glow-bg bg-indigo"></div>
+
+    <header class="app-header">
+        <div class="header-logo">
+            <div class="logo-box">
+                <span class="logo-text-a1">A1</span>
+            </div>
+            <div class="logo-title">
+                <h1>RAG Vector Playground</h1>
+                <span class="agency-tag">by A1 Tech Solution</span>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <a href="../index.html" class="nav-back-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                Back to Hub
+            </a>
+        </nav>
+    </header>
+
+    <main class="app-container">
+        <!-- Left Panel: Ingestion & Vectorization parameters -->
+        <section class="ingest-panel glass-card">
+            <div class="panel-header">
+                <svg xmlns="http://www.w3.org/2000/svg" class="panel-icon icon-emerald" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4"/><polyline points="10 18 10 11 7 11"/><path d="M17 14h-7"/><path d="M21 9v6"/><path d="M21 12H13"/></svg>
+                <h2>Vector Ingestion Engine</h2>
+            </div>
+            
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="doc-preset">Select Document Preset</label>
+                    <select id="doc-preset">
+                        <option value="bistro">Bistro A1 Menu & Hours Policy</option>
+                        <option value="clinic">BrightSmile Clinic Patient guidelines</option>
+                        <option value="custom">Custom Text (Paste your own)</option>
+                    </select>
+                </div>
+
+                <div class="form-group flex-fill">
+                    <label for="doc-editor">Document Body (Context Source)</label>
+                    <textarea id="doc-editor" placeholder="Paste your raw text knowledge database here..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="chunk-size">Chunk Size (Words)</label>
+                        <input type="range" id="chunk-size" min="10" max="60" step="5" value="25">
+                        <span class="range-val" id="chunk-size-val">25 words</span>
+                    </div>
+                    <div class="form-col">
+                        <label for="chunk-overlap">Overlap (Words)</label>
+                        <input type="range" id="chunk-overlap" min="0" max="15" step="1" value="5">
+                        <span class="range-val" id="chunk-overlap-val">5 words</span>
+                    </div>
+                </div>
+
+                <button id="btn-ingest" class="btn btn-emerald btn-glow">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4"/><polyline points="10 18 10 11 7 11"/><path d="M17 14h-7"/></svg>
+                    Tokenize & Embed Chunks
+                </button>
+            </div>
+        </section>
+
+        <!-- Right Panel: Database Search & Retrieval -->
+        <section class="search-panel">
+            <div class="glass-card query-card">
+                <div class="panel-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="panel-icon icon-indigo" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <h2>Semantic Vector Query</h2>
+                </div>
+                
+                <div class="query-bar-row">
+                    <input type="text" id="search-query" value="Do you have gluten free options and what time do you close?" placeholder="Type a natural language query (e.g. 'what is the cancellation policy?')">
+                    <button id="btn-search" class="btn btn-indigo" disabled>Search DB</button>
+                </div>
+            </div>
+
+            <!-- Ingested Vector Database Blocks -->
+            <div class="grid-layout">
+                <!-- Left grid: Ingested chunks -->
+                <div class="glass-card chunks-index-card">
+                    <div class="panel-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="panel-icon icon-emerald" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+                        <h2>Vector Index Chunks (<span id="total-chunks-badge">0</span>)</h2>
+                    </div>
+                    
+                    <div class="chunks-grid-scroll" id="chunks-container">
+                        <div class="empty-state">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="muted-icon"><path d="M12 2v20"/><path d="M17 5v14"/><path d="M22 9v6"/><path d="M7 5v14"/><path d="M2 9v6"/></svg>
+                            <p>Knowledge base empty. Click "Tokenize & Embed Chunks" to build database.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right grid: Semantic retrieval matches & Synthesizer -->
+                <div class="glass-card matches-card">
+                    <div class="panel-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="panel-icon icon-indigo" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                        <h2>Retrieval-Augmented Match</h2>
+                    </div>
+
+                    <div class="matches-body" id="matches-body">
+                        <!-- Placeholder -->
+                        <div class="empty-state" id="retrieval-placeholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="muted-icon"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                            <p>Query matches will display here with similarity weights.</p>
+                        </div>
+
+                        <!-- Matches Content (hidden initially) -->
+                        <div class="retrieval-results hidden" id="retrieval-content">
+                            <h3>Top Semantic Matches:</h3>
+                            <div class="matched-chunks-list" id="matched-chunks-list">
+                                <!-- Matched Chunk Row -->
+                            </div>
+
+                            <div class="synthesis-block">
+                                <span class="synthesis-label">Synthesized LLM Response:</span>
+                                <p id="synthesis-response">Synthesizing answer...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 A1 Tech Solution. Developed as an interactive agency showcase.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
