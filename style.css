@@ -612,3 +612,41 @@ input[type="range"]::-webkit-slider-thumb {
     z-index: 10;
     position: relative;
 }
+
+/* --- Mobile Responsiveness Overrides --- */
+@media (max-width: 1100px) {
+    .app-container {
+        padding: 1.5rem 1rem;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 0.75rem;
+        text-align: center;
+    }
+    .nav-back-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .query-bar-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    .query-bar-row input[type="text"] {
+        width: 100%;
+    }
+    .btn-indigo {
+        width: 100% !important;
+    }
+    .chunks-index-card, .matches-card {
+        max-height: none;
+    }
+}
